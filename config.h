@@ -19,8 +19,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
-static const char *tags[] = {		"",  "",	 "",	 "",    "5", "6", "7", "8", "9"};
-static const char *defaulttagapps[] = { "st", "firefox", "code", NULL, NULL, NULL, NULL, NULL, NULL };
+static const char *tags[] = {			"",  "",		 "",	 "",    "", 		"6", "7", "8", "9"};
+static const char *defaulttagapps[] = { "st", "firefox", "code", "nemo", "spotify", NULL, NULL, NULL, NULL };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -34,7 +34,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 2;    /* number of clients in master area */
+static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 #include "fibonacci.c"
