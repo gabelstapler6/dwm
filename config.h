@@ -10,8 +10,8 @@ static const char *fonts[]          = { "fontawesome:size=15", "fontawesome:size
 static const char dmenufont[]       = "SourceCodePro-Medium:size=15";
 static const char col_gray1[]       = "#263238";
 static const char col_gray2[]       = "#263238";
-static const char col_gray3[]       = "#90A4AE";
-static const char col_gray4[]       = "#ECEFF1";
+static const char col_gray3[]       = "#CFD8DC";
+static const char col_gray4[]       = "#009688";
 static const char col_cyan[]        = "#263238";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -19,8 +19,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
-/* tagging */				 // Terminal,	Code	Firefox,	FileManager
-static const char *tags[] = {	"",		"",	"",		"", 			"5", "6", "7", "8", "9"};
+static const char *tags[] = {		"",  "",	 "",	 "",    "5", "6", "7", "8", "9"};
+static const char *defaulttagapps[] = { "st", "firefox", "code", NULL, NULL, NULL, NULL, NULL, NULL };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -33,8 +33,8 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
+static const float mfact     = 0.6; /* factor of master area size [0.05..0.95] */
+static const int nmaster     = 2;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 #include "fibonacci.c"
@@ -70,9 +70,10 @@ static const char *mutevol[]  = { "/home/andi/Tools/suckless/avd/cmd/mutevol-ami
 #include <X11/XF86keysym.h>
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	/* modifier                     key        		function        argument */
+	{ MODKEY,                       XK_d,      		spawn,          {.v = dmenucmd } },
+	{ MODKEY,             			XK_s,			spawn,         	{.v = termcmd } },
+	{ MODKEY,                       XK_Return,      spawndefault,   {0} },
 
 	// Audio keybinds for laptop function keys
 	{ 0,							XF86XK_AudioRaiseVolume,	spawn,	{.v = raisevol} },
@@ -83,12 +84,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,             			XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
