@@ -14,7 +14,7 @@ static const char col_gray3[]       = "#CFD8DC";
 static const char col_gray4[]       = "#009688";
 static const char col_cyan[]        = "#263238";
 
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha = 100;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
@@ -29,8 +29,8 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
-static const char *tags[] = {			"",  "",		 "",	 "",    "", 		"6", "7", "8", "9"};
-static const char *defaulttagapps[] = { "st", "firefox", "code", "nemo", "spotify", NULL, NULL, NULL, NULL };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *defaulttagapps[] = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,6 +72,13 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // custom commands
+
+static const char *browsercmd[] = { "firefox", NULL};
+static const char *filemanagercmd[] = { "nemo", NULL};
+
+
+
+// volume
 static const char *raisevol[] = { "/home/andi/Tools/suckless/avd/cmd/raisevol-amixer", NULL};
 static const char *lowervol[] = { "/home/andi/Tools/suckless/avd/cmd/lowervol-amixer", NULL};
 static const char *mutevol[]  = { "/home/andi/Tools/suckless/avd/cmd/mutevol-amixer", NULL};
@@ -89,10 +96,15 @@ static Key keys[] = {
 	{ 0,							XF86XK_AudioRaiseVolume,	spawn,	{.v = raisevol} },
 	{ 0,							XF86XK_AudioLowerVolume, 	spawn, 	{.v = lowervol} },
 	{ 0,							XF86XK_AudioMute, 			spawn, 	{.v = mutevol} },
+	// App keybinds
+	{ MODKEY|ShiftMask,				XK_b,		spawn,			{.v = browsercmd}},
+	{ MODKEY|ShiftMask,				XK_n,		spawn,			{.v = filemanagercmd}},
+
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_y,      focusclientundermouse,     {0} },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },

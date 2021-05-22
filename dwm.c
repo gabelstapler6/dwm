@@ -171,6 +171,7 @@ static void drawbars(void);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
+static void focusclientundermouse(const Arg *arg);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
@@ -839,6 +840,14 @@ focus(Client *c)
 	}
 	selmon->sel = c;
 	drawbars();
+}
+
+void
+focusclientundermouse(const Arg *arg){
+	Client* c = getclientundermouse();
+	if(c != NULL){
+		focus(c);
+	}
 }
 
 /* there are some broken focus acquiring clients needing extra handling */
